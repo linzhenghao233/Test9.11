@@ -2,6 +2,8 @@
 
 double min(double, double);
 void chline(char, int, int);
+void function3(char, int , int);
+double function4(double, double);
 
 int main(void) {
 	/*double x, y;
@@ -10,14 +12,29 @@ int main(void) {
 	scanf_s("%lf %lf", &x, &y);
 	printf("两值中较小的是：%g", min(x, y));*/
 
-	char ch;
+	/*char ch;
 	int i, j;
 
 	printf("输入要打印的字符：");
 	scanf_s("%c", &ch, sizeof(ch));
 	printf("输入要打印的行数和列数：");
 	scanf_s("%d %d", &j, &i);
-	chline(ch, j, i);
+	chline(ch, j, i);*/
+
+	/*char ch;
+	int col, row;
+
+	printf("输入要打印的字符：");
+	scanf_s("%c", &ch, sizeof ch);
+	printf("输入要打印的列数和行数：");
+	scanf_s("%d %d", &col, &row);
+	function3(ch, col, row);*/
+
+	double num1, num2;
+
+	printf("输入两个数，求其的调和平均数：");
+	scanf_s("%lf %lf", &num1, &num2);
+	printf("两数的调和平均数：%g", function4(num1, num2));
 
 	return 0;
 }
@@ -41,4 +58,21 @@ void chline(char ch, int j, int i) {
 		}
 		printf("\n");
 	}
+}
+
+//3.
+void function3(char ch, int col, int row) {
+	int i, j;
+
+	for (i = 1; i <= row; i++) {
+		for (j = 1; j <= col; j++) {
+			printf("%c", ch);
+		}
+		printf("\n");
+	}
+}
+
+//4.
+double function4(double num1, double num2) {
+	return 1 / ((1 / num1 + 1 / num2) / 2);
 }
