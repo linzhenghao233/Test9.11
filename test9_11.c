@@ -4,6 +4,7 @@ double min(double, double);
 void chline(char, int, int);
 void function3(char, int , int);
 double function4(double, double);
+void larger_of(double*, double*);
 
 int main(void) {
 	/*double x, y;
@@ -30,11 +31,18 @@ int main(void) {
 	scanf_s("%d %d", &col, &row);
 	function3(ch, col, row);*/
 
-	double num1, num2;
+	/*double num1, num2;
 
 	printf("输入两个数，求其的调和平均数：");
 	scanf_s("%lf %lf", &num1, &num2);
-	printf("两数的调和平均数：%g", function4(num1, num2));
+	printf("两数的调和平均数：%g", function4(num1, num2));*/
+
+	double num1, num2;
+
+	printf("输入两个浮点数：");
+	scanf_s("%lf %lf", &num1, &num2);
+	larger_of(&num1, &num2);
+	printf("%g %g", num1, num2);
 
 	return 0;
 }
@@ -75,4 +83,9 @@ void function3(char ch, int col, int row) {
 //4.
 double function4(double num1, double num2) {
 	return 1 / ((1 / num1 + 1 / num2) / 2);
+}
+
+//5.
+void larger_of(double * num1, double * num2) {
+	*num1 = *num2 = *num1 > *num2 ? *num1 : *num2;
 }
