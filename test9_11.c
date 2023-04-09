@@ -5,6 +5,7 @@ void chline(char, int, int);
 void function3(char, int , int);
 double function4(double, double);
 void larger_of(double*, double*);
+void function6(double*, double*, double*);
 
 int main(void) {
 	/*double x, y;
@@ -37,12 +38,19 @@ int main(void) {
 	scanf_s("%lf %lf", &num1, &num2);
 	printf("两数的调和平均数：%g", function4(num1, num2));*/
 
-	double num1, num2;
+	/*double num1, num2;
 
 	printf("输入两个浮点数：");
 	scanf_s("%lf %lf", &num1, &num2);
 	larger_of(&num1, &num2);
-	printf("%g %g", num1, num2);
+	printf("%g %g", num1, num2);*/
+
+	double num1, num2, num3;
+
+	printf("输入三个浮点数：");
+	scanf_s("%lf %lf %lf", &num1, &num2, &num3);
+	function6(&num1, &num2, &num3);
+	printf("最小值：%g\n中间值：%g\n最大值：%g", num1, num2, num3);
 
 	return 0;
 }
@@ -88,4 +96,20 @@ double function4(double num1, double num2) {
 //5.
 void larger_of(double * num1, double * num2) {
 	*num1 = *num2 = *num1 > *num2 ? *num1 : *num2;
+}
+
+//6.
+void function6(double* num1, double* num2, double* num3) {
+	double arr[] = { *num1, *num2, *num3 }, temp;
+	int i, j;
+
+	for (i = 0; i < sizeof arr / sizeof arr[0]; i++) {
+		for (j = 0; j < sizeof arr / sizeof arr[0]; j++) {
+			if (arr[j] < arr[i]) {
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
 }
