@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 double min(double, double);
 void chline(char, int, int);
@@ -6,6 +7,8 @@ void function3(char, int , int);
 double function4(double, double);
 void larger_of(double*, double*);
 void function6(double*, double*, double*);
+int function7(char);
+double power(double, double);
 
 int main(void) {
 	/*double x, y;
@@ -45,12 +48,35 @@ int main(void) {
 	larger_of(&num1, &num2);
 	printf("%g %g", num1, num2);*/
 
-	double num1, num2, num3;
+	/*double num1, num2, num3;
 
 	printf("输入三个浮点数：");
 	scanf_s("%lf %lf %lf", &num1, &num2, &num3);
 	function6(&num1, &num2, &num3);
-	printf("最小值：%g\n中间值：%g\n最大值：%g", num1, num2, num3);
+	printf("最小值：%g\n中间值：%g\n最大值：%g", num1, num2, num3);*/
+
+	/*int ch, location;
+
+	printf("输入一串字符：");
+	while ((ch = getchar()) != EOF) {
+		if (ch == '\n')
+			break;
+
+		location = function7(ch);
+		if (isalpha(ch))
+			printf("%c是字母，字母表中的位置：%d。\n", ch, location);
+		else
+			printf("%c不是字母，%d。\n", ch, location);
+	}*/
+
+	/*double n, p, answer;
+
+	printf("输入要计算的底数和幂：");
+	while (scanf_s("%lf %lf", &n, &p) == 2) {
+		answer = power(n, p);
+		printf("答案为：%g\n", answer);
+		printf("输入要计算的底数和幂(q退出程序)：");
+	}*/
 
 	return 0;
 }
@@ -110,6 +136,47 @@ void function6(double* num1, double* num2, double* num3) {
 				arr[i] = arr[j];
 				arr[j] = temp;
 			}
+		}
+	}
+}
+
+//7.
+int function7(char ch) {
+	int location;
+
+	if (isalpha(ch)) {
+		location = toupper(ch) - 64;
+		return location;
+	}
+	else
+		return -1;
+}
+
+//8.
+double power(double n, double p) {
+	int i;
+	double answer;
+	answer = 1;
+
+	if (n == 0 && p == 0) {
+		printf("0的0次幂未定义，");
+		return 1;
+	}
+	else if (n == 0)
+		return 0;
+	else if (p == 0)
+		return 1;
+	else {
+		if (p < 0) {
+			n = 1 / n;
+			for (i = 1; i <= -p; i++)
+				answer *= n;
+			return answer;
+		}
+		else {
+			for (i = 1; i <= p; i++)
+				answer *= n;
+			return answer;
 		}
 	}
 }
