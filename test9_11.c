@@ -10,6 +10,8 @@ void function6(double*, double*, double*);
 int function7(char);
 double power(double, double);
 
+int to_base_n(int, int);
+
 int main(void) {
 	/*double x, y;
 
@@ -77,6 +79,18 @@ int main(void) {
 		printf("答案为：%g\n", answer);
 		printf("输入要计算的底数和幂(q退出程序)：");
 	}*/
+
+	int num1, system;
+
+	printf("请按顺序输入一个整数和2-12的其中一个进制：");
+	while (scanf_s("%d %d", &num1, &system) == 2) {
+		if (system < 2 || system > 12) {
+			printf("请输入正确的进制！\n");
+			printf("请按顺序输入一个整数和2-12的其中一个进制：");
+			continue;
+		}
+		printf("%d在%d进制下会等于：%d", num1, system, to_base_n(num1, system));
+	}
 
 	return 0;
 }
@@ -179,4 +193,17 @@ double power(double n, double p) {
 			return answer;
 		}
 	}
+}
+
+//10.
+int to_base_n(int num1, int system) {
+	int answer, last, num2;
+	answer = 0, last = num1 % system, num2 = 0;
+
+	if (num1 < system)
+		num2 = last;
+	else
+		answer = num2 + 10 * (to_base_n(num1 / system, system) % system);
+
+	return answer;
 }
