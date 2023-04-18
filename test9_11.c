@@ -10,7 +10,7 @@ void function6(double*, double*, double*);
 int function7(char);
 double power(double, double);
 
-int to_base_n(int, int);
+void to_base_n(int, int);
 
 int main(void) {
 	/*double x, y;
@@ -89,7 +89,9 @@ int main(void) {
 			printf("请按顺序输入一个整数和2-12的其中一个进制：");
 			continue;
 		}
-		printf("%d在%d进制下会等于：%d", num1, system, to_base_n(num1, system));
+		printf("%d在%d进制下会等于：", num1, system);
+		to_base_n(num1, system);
+		printf("\n请按顺序输入一个整数和2-12的其中一个进制：");
 	}
 
 	return 0;
@@ -196,14 +198,17 @@ double power(double n, double p) {
 }
 
 //10.
-int to_base_n(int num1, int system) {
-	int answer, last, num2;
-	answer = 0, last = num1 % system, num2 = 0;
+void to_base_n(int num1, int system) {
+	int temp[50], conversion[50], i, j, k;
 
-	if (num1 < system)
-		num2 = last;
-	else
-		answer = num2 + 10 * (to_base_n(num1 / system, system) % system);
+	for (i = 0; num1 > 0; i++) {
+		temp[i] = num1 % system;
+		num1 /= system;
+	}
 
-	return answer;
+	for (j = 0, k = i - 1; k >= 0; j++, k--) {
+		conversion[j] = temp[k];
+		printf("%d", conversion[j]);
+	}
+		
 }
